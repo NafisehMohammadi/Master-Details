@@ -1,0 +1,146 @@
+﻿@{
+    ViewData["Title"] = "Orders";
+}
+
+<h2>Orders</h2>
+
+<button onclick="newOrder()">➕ New Order</button>
+
+<hr />
+
+<!-- ===================== -->
+<!-- 📌 ORDER TABLE -->
+<!-- ===================== -->
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Order No</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody id="ordersTable">
+        <!-- JS fills this -->
+    </tbody>
+</table>
+
+<hr />
+
+<!-- ===================== -->
+<!-- 📌 EDIT / CREATE PANEL -->
+<!-- ===================== -->
+<div id="editPanel" style="display:none; border:1px solid #ccc; padding:15px;">
+
+    <h3 id="formTitle">Order Form</h3>
+
+    <!-- Hidden Id -->
+    <input type="hidden" id="editOrderId" />
+
+    <!-- Customer -->
+    <label>Customer</label>
+    <select id="editCustomerId" class="form-control"></select>
+
+    <br />
+
+    <!-- Order Date -->
+    <label>Order Date</label>
+    <input type="date" id="editOrderDate" class="form-control" />
+
+    <br />
+
+    <!-- Description -->
+    <label>Description</label>
+    <input type="text" id="editDescription" class="form-control" />
+
+    <hr />
+
+    <!-- ===================== -->
+    <!-- 📌 ORDER DETAILS -->
+    <!-- ===================== -->
+    <h4>Order Details</h4>
+
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Unit Price</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="tblDetailsBody">
+            <!-- JS fills this -->
+        </tbody>
+    </table>
+
+    <!-- Add Detail -->
+    <div class="row">
+
+        <div class="col">
+            <select id="productSelect" class="form-control"></select>
+        </div>
+
+        <div class="col">
+            <input type="number" id="qty" class="form-control" placeholder="Qty" />
+        </div>
+
+        <div class="col">
+            <input type="number" id="unitPrice" class="form-control" placeholder="Price" />
+        </div>
+
+        <div class="col">
+            <button onclick="addDetail()" class="btn btn-success">
+                Add
+            </button>
+        </div>
+
+    </div>
+    <!--  Total Amount -->
+    <div class="mt-3">
+        <strong>
+            Total Amount :
+            <span id="orderTotal">0.00</span>
+        </strong>
+    </div>
+
+    <br />
+
+    <!-- ===================== -->
+    <!-- 📌 ACTION BUTTONS -->
+    <!-- ===================== -->
+    <button id="saveButton" onclick="saveOrder()" class="btn btn-primary">
+        Save
+    </button>
+
+
+    <button onclick="resetForm()" class="btn btn-secondary">
+        Cancel
+    </button>
+
+</div>
+
+<!-- ===================== -->
+<!-- 📌 JS FILES -->
+<!-- ===================== -->
+@section Scripts {
+
+    <script src="~/js/OrderManagment/OrderManagment.js"></script>
+      
+    <script>
+        $(document).ready(function () {
+
+        loadCustomers();
+
+        loadProducts();
+
+        loadOrder();
+
+        initializeProductEvents();
+        });
+    </script>
+}

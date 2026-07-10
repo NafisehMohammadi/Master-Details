@@ -1,0 +1,220 @@
+﻿@{
+    ViewData["Title"] = "Orders";
+}
+
+<h2>Order Management</h2>
+
+<!-- ================= CREATE FORM ================= -->
+<div style="border:1px solid #ccc; padding:15px; margin-bottom:20px;">
+
+    <h3>Create Order</h3>
+
+    <input type="hidden" id="orderId" />
+
+    <div>
+        <label>Customer Id</label>
+        <input type="text" id="customerId" />
+    </div>
+
+    <div>
+        <label>Order Date</label>
+        <input type="date" id="orderDate" />
+    </div>
+
+    <hr />
+
+    <h4>Order Detail (Simple Demo)</h4>
+
+    <div>
+        <label>Product Id</label>
+        <input type="text" id="productId" />
+    </div>
+
+    <div>
+        <label>Quantity</label>
+        <input type="number" id="quantity" />
+    </div>
+
+    <div>
+        <label>Unit Price</label>
+        <input type="number" id="unitPrice" />
+    </div>
+
+    <br />
+
+    <button onclick="addDetail()">Add Detail</button>
+    <button onclick="saveOrder()">Save Order</button>
+
+</div>
+
+<!-- ================= TABLE ================= -->
+<table border="1" width="100%">
+    <thead>
+        <tr>
+            <th>Order No</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Total</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody id="ordersTable">
+    </tbody>
+</table>
+
+<!-- ================= EDIT MODAL (Simple) ================= -->
+<div id="editPanel" style="display:none; border:2px solid blue; padding:15px; margin-top:20px;">
+    <h3>Edit Order</h3>
+
+    <input type="hidden" id="editOrderId" />
+
+    <input type="text" id="editCustomerId" placeholder="Customer Id" />
+    <input type="date" id="editOrderDate" />
+
+    <button onclick="updateOrder()">Update</button>
+</div>
+
+<!-- ================= SCRIPT ================= -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+
+    // ================= LOCAL TEMP DETAILS =================
+    let details = [];
+
+    function addDetail() {
+
+        const detail = {
+            productId: $("#productId").val(),
+            quantity: parseFloat($("#quantity").val()),
+            unitPrice: parseFloat($("#unitPrice").val())
+        };
+
+        details.push(detail);
+
+        alert("Detail Added!");
+    }
+
+    // ================= SAVE ORDER =================
+    function saveOrder() {
+
+        const order = {
+            customerId: $("#customerId").val(),
+            orderDate: $("#orderDate").val(),
+            details: details
+        };
+
+        $.ajax({
+            url: "/Order/PostOrderAsync",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(order),
+
+            success: function (res) {
+                if (res.isSuccess) {
+                    alert("Created Successfully");
+                    loadOrders();
+                } else {
+                    alert(res.message);
+                }
+            }
+        });
+    }
+
+    // ================= LOAD ALL ORDERS =================
+    function loadOrders() {
+
+        $.ajax({
+            url: "/Order/GetAll",
+            type: "GET",
+            success: function (res) {
+
+                let html = "";
+
+                res.data.forEach(o => {
+
+                    html += `
+                        <tr>
+                            <td>${o.orderNumber}</td>
+                            <td>${o.customerId}</td>
+                            <td>${o.orderDate}</td>
+                            <td>${o.totalAmount}</td>
+                            <td>
+                                <button onclick="editOrder('${o.id}')">Edit</button>
+                                <button onclick="deleteOrder('${o.id}')">Delete</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                $("#ordersTable").html(html);
+            }
+        });
+    }
+
+    // ================= EDIT =================
+    function editOrder(id) {
+
+        $.ajax({
+            url: "/Order/GetById?id=" + id,
+            type: "GET",
+
+            success: function (res) {
+
+                $("#editPanel").show();
+
+                $("#editOrderId").val(res.data.id);
+                $("#editCustomerId").val(res.data.customerId);
+                $("#editOrderDate").val(res.data.orderDate);
+            }
+        });
+    }
+
+    // ================= UPDATE =================
+    function updateOrder() {
+
+        const order = {
+            id: $("#editOrderId").val(),
+            customerId: $("#editCustomerId").val(),
+            orderDate: $("#editOrderDate").val()
+        };
+
+        $.ajax({
+            url: "/Order/PutOrderAsync",
+            type: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify(order),
+
+            success: function (res) {
+                if (res.isSuccess) {
+                    alert("Updated");
+                    loadOrders();
+                    $("#editPanel").hide();
+                }
+            }
+        });
+    }
+
+    // ================= DELETE =================
+    function deleteOrder(id) {
+
+        $.ajax({
+            url: "/Order/Delete?id=" + id,
+            type: "DELETE",
+
+            success: function (res) {
+                if (res.isSuccess) {
+                    alert("Deleted");
+                    loadOrders();
+                }
+            }
+        });
+    }
+
+    // Initial Load
+    $(document).ready(function () {
+        loadOrders();
+    });
+
+</script>

@@ -1,0 +1,188 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Asp.netProject\\MasterDetail\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|d:\\asp.netproject\\masterdetail\\webapplication1\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|solutionrelative:webapplication1\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|d:\\asp.netproject\\masterdetail\\webapplication1\\applicationservices\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|solutionrelative:webapplication1\\applicationservices\\services\\orderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|d:\\asp.netproject\\masterdetail\\webapplication1\\wwwroot\\js\\ordermanagment\\ordermanagment.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|solutionrelative:webapplication1\\wwwroot\\js\\ordermanagment\\ordermanagment.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|d:\\asp.netproject\\masterdetail\\webapplication1\\applicationservices\\dtos\\orderdetaildtos\\getorderdetaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|solutionrelative:webapplication1\\applicationservices\\dtos\\orderdetaildtos\\getorderdetaildto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|d:\\asp.netproject\\masterdetail\\webapplication1\\applicationservices\\helper\\mapper\\ordermapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|solutionrelative:webapplication1\\applicationservices\\helper\\mapper\\ordermapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|d:\\asp.netproject\\masterdetail\\webapplication1\\models\\services\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|solutionrelative:webapplication1\\models\\services\\repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|d:\\asp.netproject\\masterdetail\\webapplication1\\models\\storedprocedure\\sp_order_create.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|solutionrelative:webapplication1\\models\\storedprocedure\\sp_order_create.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|d:\\asp.netproject\\masterdetail\\webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|solutionrelative:webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|d:\\asp.netproject\\masterdetail\\webapplication1\\views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|solutionrelative:webapplication1\\views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|d:\\asp.netproject\\masterdetail\\webapplication1\\models\\storedprocedure\\sp_order_update.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{DEB1782D-55AE-4BB2-9896-22FB72E80127}|WebApplication1\\MasterDetails.csproj|solutionrelative:webapplication1\\models\\storedprocedure\\sp_order_update.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\.gitignore",
+              "RelativeDocumentMoniker": "WebApplication1\\.gitignore",
+              "ToolTip": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\.gitignore",
+              "RelativeToolTip": "WebApplication1\\.gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAG/SURBVDhPrZRNTgIxFMerDIaEhHgU97JxwUKGGaNeQJdyCY0XUBDWGhg4AB\u002BuvQk7OQCRFTP1fXWmMxUMCT94ee177eu/LVQdFK31kTSJ0WgEIa0SMJ2A6QTHcF9iicQqlYpa/6zv2\u002B2HD5nuEkWR/l4udRzHZBtjGzFor1YrPR6P9WKx0MNhpN96vTuZThyLJ1AJLK/iJFFxjBanBsXIozqkWq2qev1c1Wq19063e0ZBwBNP4JaQ6WRC/i8ajQb5wWBAvnxyghpOqQPkC8L5IEEQKjgxaqOTFsCd65tb6nmlkur1\u002BxwXCgX58KfT7QptwvCK52wrSLcJvtUKOABkQ6HFXwbGsmMRBkchzpjNphLZDSrEn5G1qnsp\u002BPEtheloXouRnXDTTjhb5tXmeyg0IgzuliHp\u002By0OANbiOCDXp1IYo3mMUxBT8/mMA/8QhGH6ZzC4Zwi5ZqoQB9M3h62I/\u002B/SAQpniBmtPvdQyGeYUdgyX8pl05eIBSxmTzQYEYbc42AuJQWLGJNQEcrJG4A4BTHneSW2sqfKOyybkxXMPbAvrx3IsyLzkPJFmUcWYtDntjG6lIvnp8cvKXNIlPoFvstpJRlQPIAAAAAASUVORK5CYII=",
+              "WhenOpened": "2026-07-10T13:36:53.402Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GetOrderDetailDto.cs",
+              "DocumentMoniker": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\ApplicationServices\\Dtos\\OrderDetailDtos\\GetOrderDetailDto.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\ApplicationServices\\Dtos\\OrderDetailDtos\\GetOrderDetailDto.cs",
+              "ToolTip": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\ApplicationServices\\Dtos\\OrderDetailDtos\\GetOrderDetailDto.cs",
+              "RelativeToolTip": "WebApplication1\\ApplicationServices\\Dtos\\OrderDetailDtos\\GetOrderDetailDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-10T13:10:20.792Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OrderMapper.cs",
+              "DocumentMoniker": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\ApplicationServices\\Helper\\Mapper\\OrderMapper.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\ApplicationServices\\Helper\\Mapper\\OrderMapper.cs",
+              "ToolTip": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\ApplicationServices\\Helper\\Mapper\\OrderMapper.cs",
+              "RelativeToolTip": "WebApplication1\\ApplicationServices\\Helper\\Mapper\\OrderMapper.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-10T13:09:19.48Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrderService.cs",
+              "DocumentMoniker": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\ApplicationServices\\Services\\OrderService.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\ApplicationServices\\Services\\OrderService.cs",
+              "ToolTip": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\ApplicationServices\\Services\\OrderService.cs",
+              "RelativeToolTip": "WebApplication1\\ApplicationServices\\Services\\OrderService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAYwBMAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-10T12:33:28.711Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\Views\\Order\\Index.cshtml",
+              "RelativeDocumentMoniker": "WebApplication1\\Views\\Order\\Index.cshtml",
+              "ToolTip": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\Views\\Order\\Index.cshtml",
+              "RelativeToolTip": "WebApplication1\\Views\\Order\\Index.cshtml",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAYwIIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-10T12:30:04.809Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "OrderRepository.cs",
+              "DocumentMoniker": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\Models\\Services\\Repositories\\OrderRepository.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Models\\Services\\Repositories\\OrderRepository.cs",
+              "ToolTip": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\Models\\Services\\Repositories\\OrderRepository.cs",
+              "RelativeToolTip": "WebApplication1\\Models\\Services\\Repositories\\OrderRepository.cs",
+              "ViewState": "AgIAACEBAAAAAAAAAAAQwDMBAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-10T11:57:18.397Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\Program.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Program.cs",
+              "ToolTip": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\Program.cs",
+              "RelativeToolTip": "WebApplication1\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-10T12:38:04.344Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrderManagment.js",
+              "DocumentMoniker": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\wwwroot\\js\\OrderManagment\\OrderManagment.js",
+              "RelativeDocumentMoniker": "WebApplication1\\wwwroot\\js\\OrderManagment\\OrderManagment.js",
+              "ToolTip": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\wwwroot\\js\\OrderManagment\\OrderManagment.js",
+              "RelativeToolTip": "WebApplication1\\wwwroot\\js\\OrderManagment\\OrderManagment.js",
+              "ViewState": "AgIAAIEBAAAAAAAAAAAYwJcBAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-07-10T12:28:57.503Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "sp_Order_Update.sql",
+              "DocumentMoniker": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\Models\\StoredProcedure\\sp_Order_Update.sql",
+              "RelativeDocumentMoniker": "WebApplication1\\Models\\StoredProcedure\\sp_Order_Update.sql",
+              "ToolTip": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\Models\\StoredProcedure\\sp_Order_Update.sql",
+              "RelativeToolTip": "WebApplication1\\Models\\StoredProcedure\\sp_Order_Update.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-07-10T12:05:23.04Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "sp_Order_Create.sql",
+              "DocumentMoniker": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\Models\\StoredProcedure\\sp_Order_Create.sql",
+              "RelativeDocumentMoniker": "WebApplication1\\Models\\StoredProcedure\\sp_Order_Create.sql",
+              "ToolTip": "D:\\Asp.netProject\\MasterDetail\\WebApplication1\\Models\\StoredProcedure\\sp_Order_Create.sql",
+              "RelativeToolTip": "WebApplication1\\Models\\StoredProcedure\\sp_Order_Create.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-07-10T11:58:22.57Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
