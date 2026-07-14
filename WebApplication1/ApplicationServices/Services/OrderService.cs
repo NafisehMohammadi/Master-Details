@@ -31,90 +31,18 @@ namespace MasterDetails.ApplicationServices.Services
         }
         #endregion
 
-        #region [- PostAsync() -]
-        public async Task<Response<Guid>> PostOrderAsync(PostOrderHeaderDto dto)
+      
+        #region [- PostOrderAsync() -]
+        public async Task<Response<bool>> PostOrderAsync( PostOrderHeaderDto dto)
         {
             try
             {
                 if (dto == null)
                 {
-                    return _responseFactory.BadRequest<Guid>(
+                    return _responseFactory.BadRequest<bool>(
                         ResponseMessages.InvalidInput,
                         ErrorCodes.InvalidInput);
                 }
-
-                if (dto.Details == null || !dto.Details.Any())
-                {
-                    return _responseFactory.ValidationFail<Guid>(
-                        new List<ValidationError>
-                        {
-                            new ValidationError
-                            {
-                                PropertyName = "Details",
-                                ErrorMessage = ResponseMessages.OrderMustHaveAtLeastOneItem
-                            }
-                        });
-                }
-                var customer = await _customerRepository.SelectCustomerById(dto.CustomerId);
-
-                if (customer == null)
-                {
-                    return _responseFactory.NotFound<Guid>(
-                        ResponseMessages.CustomerNotFound,
-                        ErrorCodes.CustomerNotFound);
-                }
-                var orderId = Guid.NewGuid();
-                var orderNumber = $"ORD-{DateTime.Now:yyyyMMddHHmmss}";
-                var order = new OrderHeader
-                {
-                    Id =orderId,
-                    OrderNumber= orderNumber,
-                    CustomerId = dto.CustomerId,
-                    OrderDate = dto.OrderDate,
-                    Description = dto.Description ,
-                    CreatedDate = DateTime.UtcNow,
-                    IsDeleted = false,
-                    Details = dto.Details.Select(x => new OrderDetail
-                    {
-                        Id = Guid.NewGuid(),
-                        ProductId = x.ProductId,
-                        Quantity = x.Quantity,
-                        UnitPrice = x.UnitPrice,
-                        LineTotal = x.Quantity * x.UnitPrice,
-                        CreatedDate = DateTime.UtcNow,
-                        IsDeleted = false
-                    }).ToList()
-                };
-                order.TotalAmount = order.Details.Sum(x => x.LineTotal);
-
-                await _orderRepository.InsertAsync(order);
-
-                return _responseFactory.Success(
-                    order.Id, ResponseMessages.CreatedSuccessfully);
-            }
-             catch
-             {
-                 return _responseFactory.Exception<Guid>(
-                     ResponseMessages.UnexpectedError,
-                     ErrorCodes.UnexpectedError);
-             }
-         
-        }
-        #endregion
-
-
-        #region [- PutOrderAsync() -]
-        public async Task<Response<bool>> PutOrderAsync(PutOrderHeaderDto dto)
-        {
-            try
-            {
-                if (dto == null || dto.Id == Guid.Empty)
-                {
-                    return _responseFactory.BadRequest<bool>(
-                        ResponseMessages.InvalidOrderId,
-                        ErrorCodes.InvalidInput);
-                }
-
 
 
                 if (dto.Details == null || !dto.Details.Any())
@@ -132,10 +60,110 @@ namespace MasterDetails.ApplicationServices.Services
                 }
 
 
+                var customer =
+                    await _customerRepository
+                    .SelectCustomerById(dto.CustomerId);
+
+
+                if (customer == null)
+                {
+                    return _responseFactory.NotFound<bool>(
+                        ResponseMessages.CustomerNotFound,
+                        ErrorCodes.CustomerNotFound);
+                }
+
+
+
+                // DTO -> Entity
+                var order =
+                    OrderMapper.ToOrderHeader(dto);
+
+
+
+                // Business Rules
+
+                order.OrderNumber =
+                    $"ORD-{DateTime.Now:yyyyMMddHHmmss}";
+
+
+
+                order.CreatedDate = DateTime.UtcNow;
+
+
+                order.IsDeleted = false;
+
+
+
+                // Calculation Detail
+
+                foreach (var detail in order.Details)
+                {
+                    detail.LineTotal =
+                        detail.Quantity *
+                        detail.UnitPrice;
+                }
+
+                // Calculation Header
+
+                order.TotalAmount =
+                    order.Details
+                    .Sum(x => x.LineTotal);
+
+
+
+                // Repository -> Stored Procedure
+
+                await _orderRepository
+                    .CreateAsync(order);
+
+
+
+                return _responseFactory.Success(
+                    true,
+                    ResponseMessages.CreatedSuccessfully);
+
+            }
+            catch
+            {
+                return _responseFactory.Exception<bool>(
+                    ResponseMessages.UnexpectedError,
+                    ErrorCodes.UnexpectedError);
+            }
+        }
+        #endregion
+
+        #region [- PutOrderAsync() -]
+
+        public async Task<Response<bool>> PutOrderAsync(
+            PutOrderHeaderDto dto)
+        {
+            try
+            {
+                Console.WriteLine("guidkey_Put" + dto.GuidKey);
+
+                if (dto == null || dto.Id == Guid.Empty)
+                {
+                    return _responseFactory.BadRequest<bool>(
+                        ResponseMessages.InvalidOrderId,
+                        ErrorCodes.InvalidInput);
+                }
+
+                if (dto.Details == null || !dto.Details.Any())
+                {
+                    return _responseFactory.ValidationFail<bool>(
+                        new List<ValidationError>
+                        {
+                    new ValidationError
+                    {
+                        PropertyName = "Details",
+                        ErrorMessage =
+                        ResponseMessages.OrderMustHaveAtLeastOneItem
+                    }
+                        });
+                }
 
                 var order =
                     await _orderRepository.GetByIdAsync(dto.Id);
-
 
 
                 if (order == null)
@@ -146,9 +174,10 @@ namespace MasterDetails.ApplicationServices.Services
                 }
 
 
-
                 var customer =
-                    await _customerRepository.SelectCustomerById(dto.CustomerId);
+                    await _customerRepository
+                    .SelectCustomerById(dto.CustomerId);
+
 
                 if (customer == null)
                 {
@@ -158,34 +187,17 @@ namespace MasterDetails.ApplicationServices.Services
                 }
 
 
-                order.CustomerId = dto.CustomerId;
 
-                order.OrderDate = dto.OrderDate;
-
-                order.Description = dto.Description;
+                OrderMapper.UpdateOrderHeader(order, dto);
 
 
-                order.Details =
-                    dto.Details.Select(d =>
-                    new OrderDetail
-                    {
-                        Id = Guid.NewGuid(),
 
-                        ProductId = d.ProductId,
-
-                        Quantity = d.Quantity,
-
-                        UnitPrice = d.UnitPrice,
-
-                        LineTotal =
-                            d.Quantity * d.UnitPrice,
-
-                        CreatedDate =
-                            DateTime.UtcNow,
-
-                        IsDeleted = false
-
-                    }).ToList();
+                foreach (var detail in order.Details)
+                {
+                    detail.LineTotal =
+                        detail.Quantity *
+                        detail.UnitPrice;
+                }
 
 
 
@@ -210,10 +222,10 @@ namespace MasterDetails.ApplicationServices.Services
                     ErrorCodes.UnexpectedError);
             }
         }
+
         #endregion
 
         #region [- GetByIdAsync() -]
-
         public async Task<Response<GetOrderHeaderDto>> GetByIdAsync(GetOrderHeaderDto headerdto)
         {
             try
@@ -294,7 +306,6 @@ namespace MasterDetails.ApplicationServices.Services
 
         #endregion
 
-
         #region [- DeleteAsync() -]
         public async Task<Response<bool>> DeleteAsync(DeleteOrderHeaderDto delHeaderdto)
         {
@@ -336,7 +347,6 @@ namespace MasterDetails.ApplicationServices.Services
             }
         }
 
-       
         /*  public async Task<Response<bool>> DeleteAsync(Guid id)
          {
              var order = await _orderRepository.GetByIdAsync(id);

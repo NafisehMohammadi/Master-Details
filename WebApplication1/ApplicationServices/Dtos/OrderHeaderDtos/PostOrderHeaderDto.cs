@@ -4,16 +4,10 @@ namespace MasterDetails.ApplicationServices.Dtos.OrderHeaderDtos
 {
     public class PostOrderHeaderDto
     {
+        public Guid GuidKey { get; set; }
         public Guid CustomerId { get; set; }
-
-
         public DateTime OrderDate { get; set; }
-
-
         public string? Description { get; set; }
-
-
-        public List<PostOrderDetailDto> Details { get; set; }
-            = new();
+        public List<PostOrderDetailDto> Details { get; set; } = new();
     }
 }

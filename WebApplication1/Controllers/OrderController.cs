@@ -28,18 +28,29 @@ namespace MasterDetails.Controllers
 
         #region [- Post() -]   
         [HttpPost("PostOrderAsync")]
-        public async Task<IActionResult> PostOrderAsync([FromBody] PostOrderHeaderDto postOrderHeaderDto)
+       
+        public async Task<IActionResult> PostOrderAsync( [FromBody] PostOrderHeaderDto postOrderHeaderDto)
         {
             try
             {
-                var result = await _orderService.PostOrderAsync(postOrderHeaderDto);
+                var result =
+                    await _orderService.PostOrderAsync(postOrderHeaderDto);
+
+
                 if (result.IsSuccess)
-                    return CreatedAtAction(nameof(GetById), new { id = result.Data }, result);
+                {
+                    return Ok(result);
+                }
+
 
                 if (result.Status == ResponseStatus.ValidationError)
+                {
                     return BadRequest(result);
+                }
+
 
                 return StatusCode(500, result);
+
             }
             catch (Exception ex)
             {
@@ -50,8 +61,8 @@ namespace MasterDetails.Controllers
                 });
             }
         }
-        #endregion
 
+        #endregion
 
         #region [- Put() -]
         [HttpPut("PutOrderAsync")]
@@ -121,7 +132,9 @@ namespace MasterDetails.Controllers
         [HttpDelete("DeleteAsync")]
         public async Task<IActionResult> DeleteAsync([FromBody] DeleteOrderHeaderDto deleteOrderHeaderDto)
         {
+          
             var result =await _orderService.DeleteAsync(deleteOrderHeaderDto);
+
 
             if (result.IsSuccess)
                 return Ok(result);

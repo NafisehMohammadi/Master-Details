@@ -2,7 +2,9 @@
 {
     public class PutOrderDetailDto
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
+
+        public Guid GuidKey { get; set; }
 
         public Guid ProductId { get; set; }
 

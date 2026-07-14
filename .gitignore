@@ -1,104 +1,19 @@
-# ==========================================
 # Visual Studio
-# ==========================================
-
 .vs/
+
+# Build
+**/bin/
+**/obj/
+
+# User files
 *.user
 *.suo
-*.userosscache
-*.sln.docstates
 
-# Visual Studio Code
-.vscode/
-
-# JetBrains Rider
-.idea/
-
-
-# ==========================================
-# Build Results
-# ==========================================
-
-[Bb]in/
-[Oo]bj/
-
-# Build output
-Debug/
-Release/
-x64/
-x86/
-
-
-# ==========================================
-# .NET Core / ASP.NET Core
-# ==========================================
-
-project.lock.json
-project.fragment.lock.json
-artifacts/
-
-# NuGet
-*.nupkg
-*.snupkg
-.nuget/
-
-# NuGet packages
-packages/
-
-
-# ==========================================
 # Logs
-# ==========================================
-
 *.log
 
+# Publish
+**/publish/
 
-# ==========================================
-# Database / Local Settings
-# ==========================================
-
-appsettings.Development.json
-*.db
-*.sqlite
-
-
-# ==========================================
-# User specific files
-# ==========================================
-
-*.rsuser
-*.userprefs
-
-
-# ==========================================
-# Test Results
-# ==========================================
-
-TestResults/
-*.trx
-
-
-# ==========================================
-# Temporary files
-# ==========================================
-
-[Tt]emp/
-[Tt]mp/
-*.tmp
-*.temp
-
-
-# ==========================================
-# OS generated files
-# ==========================================
-
-.DS_Store
-Thumbs.db
-
-
-# ==========================================
-# Publish output
-# ==========================================
-
-publish/
-*.Publish.xml
+# Rider
+.idea/

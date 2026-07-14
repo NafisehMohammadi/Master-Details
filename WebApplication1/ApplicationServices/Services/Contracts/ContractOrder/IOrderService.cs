@@ -5,7 +5,7 @@ namespace MasterDetails.ApplicationServices.Services.Contracts.ContractOrder;
 
 public interface IOrderService
 {
-    Task<Response<Guid>> PostOrderAsync(PostOrderHeaderDto dto);
+    Task<Response<bool>> PostOrderAsync(PostOrderHeaderDto dto);
 
     Task<Response<bool>> PutOrderAsync(PutOrderHeaderDto dto);
 

@@ -3,7 +3,7 @@
 public class GetOrderDetailDto
 {
     public Guid Id { get; set; }
-
+    public Guid GuidKey { get; set; }
     public Guid ProductId { get; set; }
 
     public string ProductTitle { get; set; } = string.Empty;

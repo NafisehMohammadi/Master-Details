@@ -2,22 +2,20 @@
 
     namespace MasterDetails.ApplicationServices.Dtos.OrderHeaderDtos
     {
-        public class PutOrderHeaderDto
-        {
-            public Guid Id { get; set; }
+    public class PutOrderHeaderDto
+    {
+      
+        public Guid Id { get; set; }
 
+        public Guid GuidKey { get; set; }
 
-            public Guid CustomerId { get; set; }
+        public Guid CustomerId { get; set; }
 
+        public DateTime OrderDate { get; set; }
 
-            public DateTime OrderDate { get; set; }
+        public string? Description { get; set; }
 
-
-            public string? Description { get; set; }
-
-
-            public List<PutOrderDetailDto> Details { get; set; }
-                = new();
-        }
+        public List<PutOrderDetailDto> Details { get; set; } = new();
     }
+}
 

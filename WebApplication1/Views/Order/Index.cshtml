@@ -4,143 +4,306 @@
 
 <h2>Orders</h2>
 
-<button onclick="newOrder()">➕ New Order</button>
+<div class="mb-3">
 
-<hr />
-
-<!-- ===================== -->
-<!-- 📌 ORDER TABLE -->
-<!-- ===================== -->
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Order No</th>
-            <th>Customer</th>
-            <th>Date</th>
-            <th>Total</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-
-    <tbody id="ordersTable">
-        <!-- JS fills this -->
-    </tbody>
-</table>
-
-<hr />
-
-<!-- ===================== -->
-<!-- 📌 EDIT / CREATE PANEL -->
-<!-- ===================== -->
-<div id="editPanel" style="display:none; border:1px solid #ccc; padding:15px;">
-
-    <h3 id="formTitle">Order Form</h3>
-
-    <!-- Hidden Id -->
-    <input type="hidden" id="editOrderId" />
-
-    <!-- Customer -->
-    <label>Customer</label>
-    <select id="editCustomerId" class="form-control"></select>
-
-    <br />
-
-    <!-- Order Date -->
-    <label>Order Date</label>
-    <input type="date" id="editOrderDate" class="form-control" />
-
-    <br />
-
-    <!-- Description -->
-    <label>Description</label>
-    <input type="text" id="editDescription" class="form-control" />
-
-    <hr />
-
-    <!-- ===================== -->
-    <!-- 📌 ORDER DETAILS -->
-    <!-- ===================== -->
-    <h4>Order Details</h4>
-
-    <table class="table table-sm">
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Qty</th>
-                <th>Unit Price</th>
-                <th>Total</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-
-        <tbody id="tblDetailsBody">
-            <!-- JS fills this -->
-        </tbody>
-    </table>
-
-    <!-- Add Detail -->
-    <div class="row">
-
-        <div class="col">
-            <select id="productSelect" class="form-control"></select>
-        </div>
-
-        <div class="col">
-            <input type="number" id="qty" class="form-control" placeholder="Qty" />
-        </div>
-
-        <div class="col">
-            <input type="number" id="unitPrice" class="form-control" placeholder="Price" />
-        </div>
-
-        <div class="col">
-            <button onclick="addDetail()" class="btn btn-success">
-                Add
-            </button>
-        </div>
-
-    </div>
-    <!--  Total Amount -->
-    <div class="mt-3">
-        <strong>
-            Total Amount :
-            <span id="orderTotal">0.00</span>
-        </strong>
-    </div>
-
-    <br />
-
-    <!-- ===================== -->
-    <!-- 📌 ACTION BUTTONS -->
-    <!-- ===================== -->
-    <button id="saveButton" onclick="saveOrder()" class="btn btn-primary">
-        Save
+    <button class="btn btn-primary"
+            onclick="newOrder()">
+        ➕ New Order
     </button>
 
 
-    <button onclick="resetForm()" class="btn btn-secondary">
-        Cancel
+    <button class="btn btn-success"
+            onclick="loadOrder()">
+        🔄 Refresh
     </button>
 
 </div>
 
-<!-- ===================== -->
-<!-- 📌 JS FILES -->
-<!-- ===================== -->
+
+<!-- ========================= -->
+<!-- Order List -->
+<!-- ========================= -->
+
+<table class="table table-bordered">
+
+    <thead>
+
+        <tr>
+
+            <th>Order No</th>
+
+            <th>Customer</th>
+
+            <th>Date</th>
+
+            <th>Total</th>
+
+            <th>Actions</th>
+
+        </tr>
+
+    </thead>
+
+
+    <tbody id="ordersTable">
+    </tbody>
+
+
+</table>
+
+<!-- ========================= -->
+<!-- Modal -->
+<!-- ========================= -->
+
+
+<div class="modal fade"
+     id="orderModal"
+     tabindex="-1">
+
+
+    <div class="modal-dialog modal-xl">
+
+
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+
+                <h5 class="modal-title"
+                    id="formTitle">
+
+                    New Order
+
+                </h5>
+
+                <button type="button"
+                        class="btn-close"
+                        onclick="cancelOrder()">
+                </button>
+
+
+            </div>
+
+
+            <div class="modal-body">
+
+
+                <input type="hidden"
+                       id="editOrderId" />
+
+                <!-- Customer -->
+
+                <label>
+                    Customer
+                </label>
+
+                <select id="editCustomerId"
+                        class="form-control">
+                </select>
+
+                <br />
+
+                <!-- Date -->
+
+                <label>
+                    Order Date
+                </label>
+
+
+                <input type="date"
+                       id="editOrderDate"
+                       class="form-control" />
+
+                <br />
+
+                <!-- Description -->
+
+                <label>
+                    Description
+                </label>
+
+
+                <input type="text"
+                       id="editDescription"
+                       class="form-control" />
+
+                <hr />
+
+
+                <h5>
+                    Details
+                </h5>
+
+                <table class="table table-sm">
+
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Product
+                            </th>
+
+                            <th>
+                                Qty
+                            </th>
+
+                            <th>
+                                Price
+                            </th>
+
+                            <th>
+                                Total
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+
+                        </tr>
+
+
+                    </thead>
+
+
+
+                    <tbody id="tblDetailsBody">
+                    </tbody>
+
+
+                </table>
+
+
+
+
+                <!-- Add Detail -->
+
+                <div class="row">
+
+                    <div class="col">
+
+                        <select id="productSelect"
+                                class="form-control">
+                        </select>
+
+
+                    </div>
+
+
+                    <div class="col">
+
+                        <input id="qty"
+                               type="number"
+                               class="form-control"
+                               placeholder="Quantity" />
+
+                    </div>
+
+
+                    <div class="col">
+
+                        <input id="unitPrice"
+                               type="number"
+                               class="form-control"
+                               placeholder="Price" />
+
+                    </div>
+
+
+                    <div class="col">
+
+
+                        <button class="btn btn-success"
+                                onclick="addDetail()">
+
+                            Add
+
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+                <div class="mt-3">
+
+                    <strong>
+
+                        Total :
+
+                        <span id="orderTotal">
+                            0
+                        </span>
+
+
+                    </strong>
+
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+
+
+                <button id="saveButton"
+                        class="btn btn-primary"
+                        onclick="saveOrder()">
+
+                    Save
+
+                </button>
+
+
+                <button class="btn btn-secondary"
+                        onclick="cancelOrder()">
+
+                    Cancel
+
+                </button>
+
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
 @section Scripts {
 
+
     <script src="~/js/OrderManagment/OrderManagment.js"></script>
-      
+
+
     <script>
-        $(document).ready(function () {
 
-        loadCustomers();
 
-        loadProducts();
+        $(document).ready(function(){
 
-        loadOrder();
 
-        initializeProductEvents();
+            loadCustomers();
+
+            loadProducts();
+
+            loadOrder();
+
+            initializeProductEvents();
+
+
         });
+
+
     </script>
+
+
 }

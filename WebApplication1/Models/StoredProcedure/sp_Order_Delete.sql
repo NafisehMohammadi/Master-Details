@@ -1,30 +1,76 @@
-﻿create Or ALTER PROCEDURE sp_Order_Delete
+﻿CREATE OR ALTER PROCEDURE dbo.sp_Order_Delete
 (
     @Id UNIQUEIDENTIFIER
 )
+
 AS
 BEGIN
 
-    BEGIN TRANSACTION;
+SET NOCOUNT ON;
 
 
-    UPDATE OrderHeader
-    SET
-        IsDeleted = 1,
-        ModifiedDate = GETDATE()
-
-    WHERE Id = @Id;
+BEGIN TRY
 
 
-
-    UPDATE OrderDetail
-    SET
-        IsDeleted = 1
-
-    WHERE OrderHeaderId = @Id;
+BEGIN TRANSACTION;
 
 
 
-    COMMIT TRANSACTION;
+UPDATE OrderHeader
+
+SET
+
+IsDeleted = 1,
+
+ModifiedDate = GETDATE()
+
+WHERE Id=@Id;
+
+
+
+
+UPDATE OrderDetail
+
+SET
+
+IsDeleted = 1,
+
+ModifiedDate = GETDATE()
+
+WHERE OrderHeaderId=@Id;
+
+
+
+
+IF @@ROWCOUNT = 0
+
+BEGIN
+
+    THROW 50002,'Order not found',1;
 
 END
+
+
+
+COMMIT TRANSACTION;
+
+
+END TRY
+
+
+BEGIN CATCH
+
+
+IF @@TRANCOUNT > 0
+
+ROLLBACK TRANSACTION;
+
+
+THROW;
+
+
+END CATCH
+
+
+END
+GO

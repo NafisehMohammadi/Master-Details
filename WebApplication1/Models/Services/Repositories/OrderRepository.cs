@@ -12,7 +12,6 @@ namespace MasterDetail.Repositories.Repository;
 public class OrderRepository : IOrderRepository
 {
 
-
     #region [- Private Fields() -]
     private readonly ProjectDbContext _projectDbContext;
     #endregion
@@ -24,92 +23,144 @@ public class OrderRepository : IOrderRepository
     }
     #endregion
 
-    #region [- InsertAsync() -]
-    public async Task InsertAsync(OrderHeader order)
+    #region [- CreateAsync() -] 
+    public async Task CreateAsync(OrderHeader order)
     {
         await using var connection =
             _projectDbContext.Database.GetDbConnection();
 
+
         if (connection.State != ConnectionState.Open)
             await connection.OpenAsync();
+
 
 
         await using var command =
             connection.CreateCommand();
 
 
-        command.CommandText = "dbo.sp_Order_Create";
+
+        command.CommandText =
+            "dbo.sp_Order_Create";
+
 
         command.CommandType =
             CommandType.StoredProcedure;
 
 
-        command.Parameters.Add(
-            new SqlParameter("@OrderId", order.Id));
 
         command.Parameters.Add(
-            new SqlParameter("@OrderNumber", order.OrderNumber));
+            new SqlParameter(
+                "@GuidKey",
+                order.GuidKey));
 
-        command.Parameters.Add(
-            new SqlParameter("@CustomerId", order.CustomerId));
-
-        command.Parameters.Add(
-            new SqlParameter("@OrderDate", order.OrderDate));
 
 
         command.Parameters.Add(
-            new SqlParameter("@Description",
-                (object?)order.Description ?? DBNull.Value));
+            new SqlParameter(
+                "@OrderNumber",
+                order.OrderNumber));
+
 
 
         command.Parameters.Add(
-            new SqlParameter("@TotalAmount",
+            new SqlParameter(
+                "@CustomerId",
+                order.CustomerId));
+
+
+
+        command.Parameters.Add(
+            new SqlParameter(
+                "@OrderDate",
+                order.OrderDate));
+
+
+
+        command.Parameters.Add(
+            new SqlParameter(
+                "@Description",
+                (object?)order.Description
+                ?? DBNull.Value));
+
+
+
+        command.Parameters.Add(
+            new SqlParameter(
+                "@TotalAmount",
                 order.TotalAmount));
 
 
-        // ==========================
-        // TVP Order Details
-        // ==========================
+
+        // =============================
+        // TVP Details
+        // =============================
 
         var table = new DataTable();
 
-        table.Columns.Add("Id", typeof(Guid));
 
-        table.Columns.Add("ProductId", typeof(Guid));
+        table.Columns.Add(
+            "GuidKey",
+            typeof(Guid));
 
-        table.Columns.Add("Quantity", typeof(decimal));
 
-        table.Columns.Add("UnitPrice", typeof(decimal));
+        table.Columns.Add(
+            "ProductId",
+            typeof(Guid));
 
-        table.Columns.Add("LineTotal", typeof(decimal));
+
+        table.Columns.Add(
+            "Quantity",
+            typeof(decimal));
+
+
+        table.Columns.Add(
+            "UnitPrice",
+            typeof(decimal));
+
+
+        table.Columns.Add(
+            "LineTotal",
+            typeof(decimal));
+
 
 
         foreach (var detail in order.Details)
         {
             table.Rows.Add(
-                detail.Id,
+
+                detail.GuidKey,
+
                 detail.ProductId,
+
                 detail.Quantity,
+
                 detail.UnitPrice,
+
                 detail.LineTotal
             );
         }
 
 
+
         var detailsParameter =
             new SqlParameter("@Details", table)
             {
-                SqlDbType = SqlDbType.Structured,
+                SqlDbType =
+                    SqlDbType.Structured,
 
-                TypeName = "dbo.OrderDetailType"
+                TypeName = "dbo.OrderDetailCreateType"
             };
 
 
         command.Parameters.Add(detailsParameter);
 
 
+
         await command.ExecuteNonQueryAsync();
+
     }
+
     #endregion
 
     #region [- UpdateAsync() -]  
@@ -129,8 +180,13 @@ public class OrderRepository : IOrderRepository
 
        command.Parameters.Add(
             new SqlParameter("@Id", order.Id));
+
+        command.Parameters.Add(
+          new SqlParameter( "@GuidKey",order.GuidKey));
+
         command.Parameters.Add(
             new SqlParameter("@CustomerId", order.CustomerId));
+
         command.Parameters.Add(
             new SqlParameter("@OrderDate", order.OrderDate));
 
@@ -138,10 +194,8 @@ public class OrderRepository : IOrderRepository
             new SqlParameter( "@Description",
                 (object?)order.Description ?? DBNull.Value));
 
-        command.Parameters.Add(
-            new SqlParameter(
-                "@TotalAmount",
-                order.TotalAmount));
+        command.Parameters.Add(  
+            new SqlParameter("@TotalAmount", order.TotalAmount));
         // =========================
         // TVP Details
         // =========================
@@ -151,6 +205,7 @@ public class OrderRepository : IOrderRepository
 
         table.Columns.Add("Id",typeof(Guid));
 
+        table.Columns.Add("GuidKey", typeof(Guid));
 
         table.Columns.Add("ProductId", typeof(Guid));
 
@@ -166,7 +221,10 @@ public class OrderRepository : IOrderRepository
         foreach (var detail in order.Details)
         {
             table.Rows.Add(
-                detail.Id,
+                detail.Id == Guid.Empty
+                ? DBNull.Value
+                : detail.Id,
+                detail.GuidKey,
                 detail.ProductId,
                 detail.Quantity,
                 detail.UnitPrice,
@@ -179,7 +237,7 @@ public class OrderRepository : IOrderRepository
             {
                 SqlDbType = SqlDbType.Structured,
 
-                TypeName = "dbo.OrderDetailType"
+                TypeName = "dbo.OrderDetailUpdateType"
             };
 
 
@@ -348,6 +406,8 @@ public class OrderRepository : IOrderRepository
 
                 .ToListAsync();
     }
+
+ 
 
     /*  public async Task<List<OrderHeader>> GetAllAsync()
       {

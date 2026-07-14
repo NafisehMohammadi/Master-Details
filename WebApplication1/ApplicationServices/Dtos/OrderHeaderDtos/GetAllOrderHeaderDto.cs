@@ -3,7 +3,7 @@
 public class GetAllOrderHeaderDto
 {
     public Guid Id { get; set; }
-
+  //  public Guid GuidKey { get; set; }
     public string OrderNumber { get; set; } = string.Empty;
 
     public Guid CustomerId { get; set; }

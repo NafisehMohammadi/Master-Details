@@ -6,7 +6,8 @@ namespace MasterDetails.ApplicationServices.Dtos.OrderHeaderDtos;
 public class GetOrderHeaderDto
 {
     public Guid Id { get; set; }
-
+   
+    public Guid GuidKey { get; set; }
     public Guid CustomerId { get; set; }
 
     public string CustomerName { get; set; } = string.Empty;

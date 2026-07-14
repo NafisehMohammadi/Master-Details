@@ -1,4 +1,4 @@
-using MasterDetail.Frameworks.ResponseFrameworks.Contracts;
+﻿using MasterDetail.Frameworks.ResponseFrameworks.Contracts;
 using MasterDetail.Repositories.Contract;
 using MasterDetail.Repositories.Repository;
 using MasterDetails.ApplicationServices.Services;
@@ -10,6 +10,7 @@ using MasterDetails.Models;
 using MasterDetails.Models.Services.Contracts;
 using MasterDetails.Models.Services.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 
 
@@ -19,9 +20,26 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 #region [- DbContext-]
+
 var connectionString = builder.Configuration.GetConnectionString("Default");
-builder.Services.AddDbContext<ProjectDbContext>
-    (Options => Options.UseSqlServer(connectionString));
+
+builder.Services.AddDbContext<ProjectDbContext>(options =>
+{
+    options.UseSqlServer(connectionString);
+
+    // فقط در محیط توسعه
+    if (builder.Environment.IsDevelopment())
+    {
+        // نمایش مقدار واقعی پارامترها
+        options.EnableSensitiveDataLogging();
+
+        // نمایش Query ها و زمان اجرا
+        options.LogTo(
+            Console.WriteLine,
+            LogLevel.Information);
+    }
+});
+
 #endregion
 
 #region[- AddScoped() -]

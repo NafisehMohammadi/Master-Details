@@ -1,0 +1,18 @@
+﻿DROP TYPE IF EXISTS dbo.OrderDetailUpdateType;
+GO
+
+CREATE TYPE dbo.OrderDetailUpdateType AS TABLE
+(
+    Id UNIQUEIDENTIFIER NULL,
+
+    GuidKey UNIQUEIDENTIFIER NOT NULL,
+
+    ProductId UNIQUEIDENTIFIER NOT NULL,
+
+    Quantity DECIMAL(18,2) NOT NULL,
+
+    UnitPrice DECIMAL(18,2) NOT NULL,
+
+    LineTotal DECIMAL(18,2) NOT NULL
+);
+GO
